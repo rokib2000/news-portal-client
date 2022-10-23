@@ -11,10 +11,16 @@ export const routes = createBrowserRouter([
     children: [
       {
         path: "/",
+        loader: async () => {
+          return fetch("https://news-portal-server-lac.vercel.app/news");
+        },
         element: <Home></Home>,
       },
       {
         path: "/category/:id",
+        loader: async ({ params }) => {
+          return fetch(`https://news-portal-server-lac.vercel.app/category/${params.id}`);
+        },
         element: <Category></Category>,
       },
       {
